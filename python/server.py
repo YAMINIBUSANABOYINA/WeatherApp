@@ -6,7 +6,16 @@ import urllib.parse
 API_KEY = "04f653b116954bc9ed0e4931ddede0fc"  # your API key
 PORT = 8000
 
+import os
+from http.server import SimpleHTTPRequestHandler, HTTPServer
+import requests
+import urllib.parse
+
+# Set the frontend folder as root
+os.chdir("../frontend")
+
 class WeatherHandler(SimpleHTTPRequestHandler):
+
     def do_GET(self):
         if self.path.startswith("/weather"):
             query = urllib.parse.urlparse(self.path).query
